@@ -203,17 +203,76 @@ namespace MaterialChartPlugin.ViewModels
         }
         #endregion
 
+        #region YMin1変更通知プロパティ
+        private double _YMin1 = 0;
+
+        public double YMin1
+        {
+            get
+            { return _YMin1; }
+            set
+            {
+                if (_YMin1 == value)
+                    return;
+                _YMin1 = value;
+                RaisePropertyChanged();
+            }
+        }
+        #endregion
+
+        #region YMin1変更通知プロパティ
+        private double _YMin2 = 0;
+
+        public double YMin2
+        {
+            get
+            {
+                return _YMin2;
+            }
+            set
+            {
+                if (_YMin2 == value)
+                    return;
+                _YMin2 = value;
+                RaisePropertyChanged();
+            }
+        }
+        #endregion
+
+        #region IsYMinFixedAtZero変更通知プロパティ
+        private Boolean _IsYMinFixedAtZero = true;
+
+        public Boolean IsYMinFixedAtZero
+        {
+            get
+            {
+                return _IsYMinFixedAtZero;
+            }
+            set
+            {
+                _IsYMinFixedAtZero = value;
+                RaisePropertyChanged();
+            }
+        }
+        #endregion
+
         public DisplayedPeriod DisplayedPeriod => ChartSettings.DisplayedPeriod.Value;
 
         public IReadOnlyCollection<DisplayViewModel<DisplayedPeriod>> DisplayedPeriods { get; }
 
         int mostMaterial = 0;
 
+        int minMaterial = 0;
+
         int mostRepairTool = 0;
+
+        int minRepairTool = 0;
 
         PropertyChangedEventListener managerChangedListener;
 
         PropertyChangedEventListener logChangedListener;
+
+        PropertyChangedEventListener isYMinFixedAtZeroChangedListener;
 
         public ToolViewModel(MaterialChartPlugin plugin)
         {
@@ -268,6 +327,18 @@ namespace MaterialChartPlugin.ViewModels
                         }
                     };
 
+
+            // IsYMinFixedAtZeroの通知設定
+            isYMinFixedAtZeroChangedListener = new PropertyChangedEventListener(this)
+            {
+                { nameof(this.IsYMinFixedAtZero), (_, __) =>
+                {
+                    if (materialManager.Log.HasLoaded)
+                                RefleshData();
+                }
+                }
+            };
+
             // データ更新設定
             Observable.FromEvent<NotifyCollectionChangedEventHandler, NotifyCollectionChangedEventArgs>
                 (h => (sender, e) => h(e), h => history.CollectionChanged += h, h => history.CollectionChanged -= h)
@@ -283,8 +354,8 @@ namespace MaterialChartPlugin.ViewModels
         public void UpdateData(TimeMaterialsPair newData)
         {
             SetXAxis(newData);
-            SetMaterialYAxis(Math.Max(this.mostMaterial, newData.MostMaterial));
-            SetRepairToolYAxis(Math.Max(this.mostRepairTool, newData.RepairTool));
+            SetMaterialYAxis(Math.Max(this.mostMaterial, newData.MostMaterial), Math.Min(this.minMaterial, newData.MinMaterial));
+            SetRepairToolYAxis(Math.Max(this.mostRepairTool, newData.RepairTool), Math.Min(this.minRepairTool, newData.RepairTool));
             AddChartData(newData);
         }
 
@@ -305,8 +376,8 @@ namespace MaterialChartPlugin.ViewModels
                 .ToArray();
 
             SetXAxis(neededData[neededData.Length - 1]);
-            SetMaterialYAxis(neededData.Max(p => p.MostMaterial));
-            SetRepairToolYAxis(neededData.Max(p => p.RepairTool));
+            SetMaterialYAxis(neededData.Max(p => p.MostMaterial), neededData.Min(p => p.MinMaterial));
+            SetRepairToolYAxis(neededData.Max(p => p.RepairTool), neededData.Min(p => p.RepairTool));
             RefleshChartData(neededData);
         }
 
@@ -381,22 +452,26 @@ namespace MaterialChartPlugin.ViewModels
         /// 資材グラフのY軸の設定を行います。
         /// </summary>
         /// <param name="mostMaterial">最も多い資材の量</param>
-        private void SetMaterialYAxis(int mostMaterial)
+        private void SetMaterialYAxis(int mostMaterial, int minMaterial)
         {
             this.mostMaterial = Math.Max(mostMaterial, 100);
-            var interval = ChartUtilities.GetInterval(0, this.mostMaterial);
+            this.minMaterial = minMaterial;
+            var interval = ChartUtilities.GetInterval(this.minMaterial, this.mostMaterial);
             YMax1 = ChartUtilities.GetYAxisMax(this.mostMaterial, interval);
+            YMin1 = IsYMinFixedAtZero ? 0 : ChartUtilities.GetYAxisMin(this.minMaterial, interval);
         }
 
         /// <summary>
         /// 高速修復材グラフのY軸の設定を行います。
         /// </summary>
         /// <param name="mostRepairTool">最も多い高速修復材の量</param>
-        private void SetRepairToolYAxis(int mostRepairTool)
+        private void SetRepairToolYAxis(int mostRepairTool, int minRepairTool)
         {
             this.mostRepairTool = Math.Max(mostRepairTool, 10);
-            var interval = ChartUtilities.GetInterval(0, this.mostRepairTool);
+            this.minRepairTool = minRepairTool;
+            var interval = ChartUtilities.GetInterval(this.minRepairTool, this.mostRepairTool);
             YMax2 = ChartUtilities.GetYAxisMax(this.mostRepairTool, interval);
+            YMin2 = IsYMinFixedAtZero ? 0 : ChartUtilities.GetYAxisMin(this.minRepairTool, interval);
         }
 
         public async void ExportAsCsv()

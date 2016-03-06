@@ -14,6 +14,12 @@ namespace MaterialChartPlugin.Models.Utilities
             return interval * (maxValue / interval + 1);
         }
 
+        public static int GetYAxisMin(int minValue, int interval)
+        {
+            minValue = minValue > 0 ? minValue : 1;
+            return interval * (minValue / interval);
+        }
+
         public static int GetInterval(int min, int max)
         {
             // グラフの数値軸目盛を自動算出するアルゴリズム: いげ太のブログ

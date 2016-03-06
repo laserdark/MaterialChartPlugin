@@ -64,7 +64,9 @@ namespace MaterialChartPlugin.Models
         [ProtoMember(9)]
         public int ImprovementTool { get; private set; }
 
-        public int MostMaterial => Math.Max(Math.Max(Math.Max(Fuel, Ammunition), Steel), Bauxite);
+        public int MostMaterial => new int[] { Fuel, Ammunition, Steel, Bauxite }.Max();
+
+        public int MinMaterial => new int[] { Fuel, Ammunition, Steel, Bauxite }.Min();
 
         public TimeMaterialsPair() { }
 
