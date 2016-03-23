@@ -175,13 +175,23 @@
                     <ColumnDefinition/>
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
-                <StackPanel Grid.Column="0" Orientation="Horizontal" Margin="0" VerticalAlignment="Center">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <StackPanel Grid.Column="0" Grid.Row="0"  Orientation="Horizontal" Margin="0" VerticalAlignment="Center">
                     <TextBlock Text="グラフの表示期間" Margin="0,0,10,0" VerticalAlignment="Center"/>
                     <Custom:PromptComboBox x:Name="promptComboBox" ItemsSource="{Binding DisplayedPeriods}" 
 						DisplayMemberPath="Display" SelectedValuePath="Value" 
 						SelectedValue="{Binding Value, Mode=Twoway, Source={x:Static settings:ChartSettings.DisplayedPeriod}, UpdateSourceTrigger=PropertyChanged}"
 						Prompt="" MinWidth="80"/>
                     <CheckBox Margin="30,0,0,0" IsChecked="{Binding IsYMinFixedAtZero}" Content="Y軸最低値を0固定にする"/>
+                </StackPanel>
+                <StackPanel Margin="0,10,0,0" Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Center">
+                    <CheckBox Margin="0,3,10,3" IsChecked="{Binding IsFuelChartEnable}" Content="燃料"/>
+                    <CheckBox Margin="0,3,10,3" IsChecked="{Binding IsAmmunitionChartEnable}" Content="弾薬"/>
+                    <CheckBox Margin="0,3,10,3" IsChecked="{Binding IsSteelChartEnable}" Content="鋼材"/>
+                    <CheckBox Margin="0,3,10,3" IsChecked="{Binding IsBauxiteChartEnable}" Content="ボーキサイト"/>
                 </StackPanel>
             </Grid>
 
@@ -190,10 +200,10 @@
                     <chartingToolkit:DateTimeAxis Orientation="X" Minimum="{Binding XMin}" Maximum="{Binding XMax}" MajorTickMarkStyle="{DynamicResource MajorTickStyle}" Location="Bottom" AxisLabelStyle="{StaticResource DateTimeAxisLabelStyle}" GridLineStyle="{DynamicResource GridLineStyle}" ShowGridLines="True" />
                     <chartingToolkit:LinearAxis Orientation="Y" Minimum="{Binding YMin1}" Maximum="{Binding YMax1}" MajorTickMarkStyle="{DynamicResource MajorTickStyle}" Location="Left" ShowGridLines="True" GridLineStyle="{DynamicResource GridLineStyle}" MinWidth="40"/>
                 </chartingToolkit:Chart.Axes>
-                <chartingToolkit:AreaSeries DependentValuePath="Y" IndependentValuePath="X" ItemsSource="{Binding FuelSeries}" Title="燃料" Style="{DynamicResource SimpleAreaSeriesStyle}" BorderBrush="#FF5DA353"/>
-                <chartingToolkit:AreaSeries DependentValuePath="Y" IndependentValuePath="X" ItemsSource="{Binding AmmunitionSeries}" Title="弾薬"  Style="{DynamicResource SimpleAreaSeriesStyle}" BorderBrush="#FF9A8F61"/>
-                <chartingToolkit:AreaSeries DependentValuePath="Y" IndependentValuePath="X" ItemsSource="{Binding SteelSeries}" Title="鋼材" Style="{DynamicResource SimpleAreaSeriesStyle}" BorderBrush="#FFC9C9C9"/>
-                <chartingToolkit:AreaSeries DependentValuePath="Y" IndependentValuePath="X" ItemsSource="{Binding BauxiteSeries}" Title="ボーキサイト" Style="{DynamicResource SimpleAreaSeriesStyle}" BorderBrush="#FFC7844D"/>
+                <chartingToolkit:AreaSeries Visibility="{Binding IsFuelChartVisible}" DependentValuePath="Y" IndependentValuePath="X" ItemsSource="{Binding FuelSeries}" Title="燃料" Style="{DynamicResource SimpleAreaSeriesStyle}" BorderBrush="#FF5DA353"/>
+                <chartingToolkit:AreaSeries Visibility="{Binding IsAmmunitionChartVisible}" DependentValuePath="Y" IndependentValuePath="X" ItemsSource="{Binding AmmunitionSeries}" Title="弾薬"  Style="{DynamicResource SimpleAreaSeriesStyle}" BorderBrush="#FF9A8F61"/>
+                <chartingToolkit:AreaSeries Visibility="{Binding IsSteelChartVisible}" DependentValuePath="Y" IndependentValuePath="X" ItemsSource="{Binding SteelSeries}" Title="鋼材" Style="{DynamicResource SimpleAreaSeriesStyle}" BorderBrush="#FFC9C9C9"/>
+                <chartingToolkit:AreaSeries Visibility="{Binding IsBauxiteChartVisible}" DependentValuePath="Y" IndependentValuePath="X" ItemsSource="{Binding BauxiteSeries}" Title="ボーキサイト" Style="{DynamicResource SimpleAreaSeriesStyle}" BorderBrush="#FFC7844D"/>
                 <chartingToolkit:LineSeries DependentValuePath="Y" IndependentValuePath="X" ItemsSource="{Binding StorableLimitSeries}" Title="回復上限" Style="{DynamicResource SimpleLineSeriesStyle}" BorderBrush="#FF4E3876"/>
             </chartingToolkit:Chart>
             <chartingToolkit:Chart Height="200" Style="{DynamicResource MaterialChartStyle}" Margin="0,25,0,0" >

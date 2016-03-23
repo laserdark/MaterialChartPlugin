@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace MaterialChartPlugin.Models.Utilities
 {
@@ -143,6 +144,16 @@ namespace MaterialChartPlugin.Models.Utilities
                 default:
                     throw new ArgumentException("periodの値が不正です");
             }
+        }
+
+        /// <summary>
+        /// ブール値を要素の表示状態へ変換
+        /// </summary>
+        /// <param name="b">ブール値</param>
+        /// <returns>要素の表示状態</returns>
+        public static Visibility IsVisible(this Boolean b)
+        {
+            return b ? Visibility.Visible : Visibility.Collapsed;
         }
     }
 }

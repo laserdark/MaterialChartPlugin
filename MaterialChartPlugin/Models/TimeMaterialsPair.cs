@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using ProtoBuf;
 
 namespace MaterialChartPlugin.Models
@@ -64,9 +61,35 @@ namespace MaterialChartPlugin.Models
         [ProtoMember(9)]
         public int ImprovementTool { get; private set; }
 
-        public int MostMaterial => new int[] { Fuel, Ammunition, Steel, Bauxite }.Max();
+        public int MostMaterial(Boolean[] visible)
+        {
+            var array = new[]
+            {
+                new {Visible = visible[0], Material = Fuel},
+                new {Visible = visible[1], Material = Ammunition},
+                new {Visible = visible[2], Material = Steel},
+                new {Visible = visible[3], Material = Bauxite},
+            };
 
-        public int MinMaterial => new int[] { Fuel, Ammunition, Steel, Bauxite }.Min();
+            var result = array.Where(x => x.Visible).Select(x => x.Material);
+
+            return result.Count() == 0 ? array.Select(x => x.Material).Max() : result.Max();
+        }
+
+        public int MinMaterial(Boolean[] visible)
+        {
+            var array = new[]
+            {
+                new {Visible = visible[0], Material = Fuel},
+                new {Visible = visible[1], Material = Ammunition},
+                new {Visible = visible[2], Material = Steel},
+                new {Visible = visible[3], Material = Bauxite},
+            };
+
+            var result = array.Where(x => x.Visible).Select(x => x.Material);
+
+            return result.Count() == 0 ? 0 : result.Min();
+        }
 
         public TimeMaterialsPair() { }
 

@@ -256,6 +256,105 @@ namespace MaterialChartPlugin.ViewModels
         }
         #endregion
 
+        #region IsFuelChartEnable変更通知プロパティ
+        private Boolean _IsFuelChartEnable = true;
+        public Boolean IsFuelChartEnable
+        {
+            get
+            {
+                return _IsFuelChartEnable;
+            }
+            set
+            {
+                _IsFuelChartEnable = value;
+                RaisePropertyChanged();
+                RaisePropertyChanged(nameof(this.IsFuelChartVisible));
+            }
+        }
+        #endregion
+
+        #region IsAmmunitionChartEnable変更通知プロパティ
+        private Boolean _IsAmmunitionChartEnable = true;
+        public Boolean IsAmmunitionChartEnable
+        {
+            get
+            {
+                return _IsAmmunitionChartEnable;
+            }
+            set
+            {
+                _IsAmmunitionChartEnable = value;
+                RaisePropertyChanged();
+                RaisePropertyChanged(nameof(this.IsAmmunitionChartVisible));
+            }
+        }
+        #endregion
+
+        #region IsSteelChartEnable変更通知プロパティ
+        private Boolean _IsSteelChartEnable = true;
+        public Boolean IsSteelChartEnable
+        {
+            get
+            {
+                return _IsSteelChartEnable;
+            }
+            set
+            {
+                _IsSteelChartEnable = value;
+                RaisePropertyChanged();
+                RaisePropertyChanged(nameof(this.IsSteelChartVisible));
+            }
+        }
+        #endregion
+
+        #region IsBauxiteChartEnable変更通知プロパティ
+        private Boolean _IsBauxiteChartEnable = true;
+        public Boolean IsBauxiteChartEnable
+        {
+            get
+            {
+                return _IsBauxiteChartEnable;
+            }
+            set
+            {
+                _IsBauxiteChartEnable = value;
+                RaisePropertyChanged();
+                RaisePropertyChanged(nameof(this.IsBauxiteChartVisible));
+            }
+        }
+        #endregion
+
+        public Visibility IsFuelChartVisible
+        {
+            get
+            {
+                return IsFuelChartEnable.IsVisible();
+            }
+        }
+
+        public Visibility IsAmmunitionChartVisible
+        {
+            get
+            {
+                return IsAmmunitionChartEnable.IsVisible();
+            }
+        }
+        public Visibility IsSteelChartVisible
+        {
+            get
+            {
+                return IsSteelChartEnable.IsVisible();
+            }
+        }
+
+        public Visibility IsBauxiteChartVisible
+        {
+            get
+            {
+                return IsBauxiteChartEnable.IsVisible();
+            }
+        }
+
         public DisplayedPeriod DisplayedPeriod => ChartSettings.DisplayedPeriod.Value;
 
         public IReadOnlyCollection<DisplayViewModel<DisplayedPeriod>> DisplayedPeriods { get; }
@@ -272,7 +371,7 @@ namespace MaterialChartPlugin.ViewModels
 
         PropertyChangedEventListener logChangedListener;
 
-        PropertyChangedEventListener isYMinFixedAtZeroChangedListener;
+        PropertyChangedEventListener viewSettingChangedListener;
 
         public ToolViewModel(MaterialChartPlugin plugin)
         {
@@ -289,6 +388,7 @@ namespace MaterialChartPlugin.ViewModels
                 DisplayViewModel.Create(DisplayedPeriod.OneYear, "1年"),
                 DisplayViewModel.Create(DisplayedPeriod.ThreeYears, "3年")
             };
+
         }
 
         public async void Initialize()
@@ -328,14 +428,43 @@ namespace MaterialChartPlugin.ViewModels
                     };
 
 
-            // IsYMinFixedAtZeroの通知設定
-            isYMinFixedAtZeroChangedListener = new PropertyChangedEventListener(this)
+            // 表示設定変更の通知設定
+            viewSettingChangedListener = new PropertyChangedEventListener(this)
             {
-                { nameof(this.IsYMinFixedAtZero), (_, __) =>
                 {
-                    if (materialManager.Log.HasLoaded)
+                    nameof(this.IsYMinFixedAtZero), (_, __) =>
+                    {
+                        if (materialManager.Log.HasLoaded)
                                 RefleshData();
-                }
+                    }
+                },
+                {
+                    nameof(this.IsFuelChartEnable), (_, __) =>
+                    {
+                        if (materialManager.Log.HasLoaded)
+                                RefleshData();
+                    }
+                },
+                {
+                    nameof(this.IsAmmunitionChartEnable), (_, __) =>
+                    {
+                        if (materialManager.Log.HasLoaded)
+                                RefleshData();
+                    }
+                },
+                {
+                    nameof(this.IsSteelChartEnable), (_, __) =>
+                    {
+                        if (materialManager.Log.HasLoaded)
+                                RefleshData();
+                    }
+                },
+                {
+                    nameof(this.IsBauxiteChartEnable), (_, __) =>
+                    {
+                        if (materialManager.Log.HasLoaded)
+                                RefleshData();
+                    }
                 }
             };
 
@@ -353,8 +482,10 @@ namespace MaterialChartPlugin.ViewModels
         /// <param name="newData"></param>
         public void UpdateData(TimeMaterialsPair newData)
         {
+            var chartvisibleList = new[] { IsFuelChartEnable, IsAmmunitionChartEnable, IsSteelChartEnable, IsBauxiteChartEnable };
+
             SetXAxis(newData);
-            SetMaterialYAxis(Math.Max(this.mostMaterial, newData.MostMaterial), Math.Min(this.minMaterial, newData.MinMaterial));
+            SetMaterialYAxis(Math.Max(this.mostMaterial, newData.MostMaterial(chartvisibleList)), Math.Min(this.minMaterial, newData.MinMaterial(chartvisibleList)));
             SetRepairToolYAxis(Math.Max(this.mostRepairTool, newData.RepairTool), Math.Min(this.minRepairTool, newData.RepairTool));
             AddChartData(newData);
         }
@@ -375,8 +506,10 @@ namespace MaterialChartPlugin.ViewModels
                 .ThinOut(ChartSettings.DisplayedPeriod)
                 .ToArray();
 
+            var chartvisibleList = new[] { IsFuelChartEnable, IsAmmunitionChartEnable, IsSteelChartEnable, IsBauxiteChartEnable };
+
             SetXAxis(neededData[neededData.Length - 1]);
-            SetMaterialYAxis(neededData.Max(p => p.MostMaterial), neededData.Min(p => p.MinMaterial));
+            SetMaterialYAxis(neededData.Max(p => p.MostMaterial(chartvisibleList)), neededData.Min(p => p.MinMaterial(chartvisibleList)));
             SetRepairToolYAxis(neededData.Max(p => p.RepairTool), neededData.Min(p => p.RepairTool));
             RefleshChartData(neededData);
         }
@@ -457,8 +590,10 @@ namespace MaterialChartPlugin.ViewModels
             this.mostMaterial = Math.Max(mostMaterial, 100);
             this.minMaterial = minMaterial;
             var interval = ChartUtilities.GetInterval(this.minMaterial, this.mostMaterial);
-            YMax1 = ChartUtilities.GetYAxisMax(this.mostMaterial, interval);
-            YMin1 = IsYMinFixedAtZero ? 0 : ChartUtilities.GetYAxisMin(this.minMaterial, interval);
+            var chartvisibleList = new[] { IsFuelChartEnable, IsAmmunitionChartEnable, IsSteelChartEnable, IsBauxiteChartEnable };
+
+            YMax1 = chartvisibleList.Where(x => x).Count() == 0 ? mostMaterial : ChartUtilities.GetYAxisMax(this.mostMaterial, interval);
+            YMin1 = chartvisibleList.Where(x => x).Count() == 0 ? 0 : (IsYMinFixedAtZero ? 0 : ChartUtilities.GetYAxisMin(this.minMaterial, interval));
         }
 
         /// <summary>
