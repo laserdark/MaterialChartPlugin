@@ -46,5 +46,65 @@ namespace MaterialChartPlugin.Properties {
                 this["CsvRecordOrder"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool IsYMinFixedAtZero {
+            get {
+                return ((bool)(this["IsYMinFixedAtZero"]));
+            }
+            set {
+                this["IsYMinFixedAtZero"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool IsFuelChartEnable {
+            get {
+                return ((bool)(this["IsFuelChartEnable"]));
+            }
+            set {
+                this["IsFuelChartEnable"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool IsAmmunitionChartEnable {
+            get {
+                return ((bool)(this["IsAmmunitionChartEnable"]));
+            }
+            set {
+                this["IsAmmunitionChartEnable"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool IsSteelChartEnable {
+            get {
+                return ((bool)(this["IsSteelChartEnable"]));
+            }
+            set {
+                this["IsSteelChartEnable"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool IsBauxiteChartEnable {
+            get {
+                return ((bool)(this["IsBauxiteChartEnable"]));
+            }
+            set {
+                this["IsBauxiteChartEnable"] = value;
+            }
+        }
     }
 }

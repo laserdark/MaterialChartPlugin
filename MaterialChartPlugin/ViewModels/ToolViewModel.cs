@@ -14,6 +14,7 @@ using MaterialChartPlugin.Models.Utilities;
 using System.Reactive.Linq;
 using System.Windows;
 using Microsoft.Win32;
+using MaterialChartPlugin.Properties;
 
 namespace MaterialChartPlugin.ViewModels
 {
@@ -240,7 +241,7 @@ namespace MaterialChartPlugin.ViewModels
         #endregion
 
         #region IsYMinFixedAtZero変更通知プロパティ
-        private Boolean _IsYMinFixedAtZero = true;
+        private Boolean _IsYMinFixedAtZero = MaterialChartSettings.Default.IsYMinFixedAtZero;
 
         public Boolean IsYMinFixedAtZero
         {
@@ -251,13 +252,14 @@ namespace MaterialChartPlugin.ViewModels
             set
             {
                 _IsYMinFixedAtZero = value;
+                MaterialChartSettings.Default.IsYMinFixedAtZero = value;
                 RaisePropertyChanged();
             }
         }
         #endregion
 
         #region IsFuelChartEnable変更通知プロパティ
-        private Boolean _IsFuelChartEnable = true;
+        private Boolean _IsFuelChartEnable = MaterialChartSettings.Default.IsFuelChartEnable;
         public Boolean IsFuelChartEnable
         {
             get
@@ -267,6 +269,7 @@ namespace MaterialChartPlugin.ViewModels
             set
             {
                 _IsFuelChartEnable = value;
+                MaterialChartSettings.Default.IsFuelChartEnable = value;
                 RaisePropertyChanged();
                 RaisePropertyChanged(nameof(this.IsFuelChartVisible));
             }
@@ -274,7 +277,7 @@ namespace MaterialChartPlugin.ViewModels
         #endregion
 
         #region IsAmmunitionChartEnable変更通知プロパティ
-        private Boolean _IsAmmunitionChartEnable = true;
+        private Boolean _IsAmmunitionChartEnable = MaterialChartSettings.Default.IsAmmunitionChartEnable;
         public Boolean IsAmmunitionChartEnable
         {
             get
@@ -284,6 +287,7 @@ namespace MaterialChartPlugin.ViewModels
             set
             {
                 _IsAmmunitionChartEnable = value;
+                MaterialChartSettings.Default.IsAmmunitionChartEnable = value;
                 RaisePropertyChanged();
                 RaisePropertyChanged(nameof(this.IsAmmunitionChartVisible));
             }
@@ -291,7 +295,7 @@ namespace MaterialChartPlugin.ViewModels
         #endregion
 
         #region IsSteelChartEnable変更通知プロパティ
-        private Boolean _IsSteelChartEnable = true;
+        private Boolean _IsSteelChartEnable = MaterialChartSettings.Default.IsSteelChartEnable;
         public Boolean IsSteelChartEnable
         {
             get
@@ -301,6 +305,7 @@ namespace MaterialChartPlugin.ViewModels
             set
             {
                 _IsSteelChartEnable = value;
+                MaterialChartSettings.Default.IsSteelChartEnable = value;
                 RaisePropertyChanged();
                 RaisePropertyChanged(nameof(this.IsSteelChartVisible));
             }
@@ -308,7 +313,7 @@ namespace MaterialChartPlugin.ViewModels
         #endregion
 
         #region IsBauxiteChartEnable変更通知プロパティ
-        private Boolean _IsBauxiteChartEnable = true;
+        private Boolean _IsBauxiteChartEnable = MaterialChartSettings.Default.IsBauxiteChartEnable;
         public Boolean IsBauxiteChartEnable
         {
             get
@@ -318,6 +323,7 @@ namespace MaterialChartPlugin.ViewModels
             set
             {
                 _IsBauxiteChartEnable = value;
+                MaterialChartSettings.Default.IsBauxiteChartEnable = value;
                 RaisePropertyChanged();
                 RaisePropertyChanged(nameof(this.IsBauxiteChartVisible));
             }

@@ -78,7 +78,6 @@ namespace MaterialChartPlugin
             set
             {
                 MaterialChartSettings.Default.CsvRecordSummary = value;
-                MaterialChartSettings.Default.Save();
             }
         }
 
@@ -91,7 +90,6 @@ namespace MaterialChartPlugin
             set
             {
                 MaterialChartSettings.Default.CsvRecordOrder = value;
-                MaterialChartSettings.Default.Save();
             }
         }
 
