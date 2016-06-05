@@ -26,8 +26,10 @@ namespace MaterialChartPlugin.Models.Utilities
             // http://igeta.cocolog-nifty.com/blog/2007/11/graph_scale.html
             // を参考に作成
 
-            if (max <= min)
+            if (max < min)
                 throw new ArgumentException("Max:" + max + "Min:" + min);
+            else if (max == min)
+                min = max - 10;
 
             int difference = max - min; // 最上位桁値
             int shift = 1;              // 桁上げ倍率

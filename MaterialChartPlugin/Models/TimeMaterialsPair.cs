@@ -80,7 +80,7 @@ namespace MaterialChartPlugin.Models
             var result = visible.Zip(material, (first, second) => new { Visible = first, Material = second })
                             .Where(x => x.Visible).Select(x => x.Material);
 
-            return result.Count() == 0 ? 0 : (result.Min() == 300000 ? 0 : result.Min());
+            return result.Count() == 0 ? 0 : result.Min();
         }
 
         public int MostTool(Boolean[] visible)
@@ -102,7 +102,7 @@ namespace MaterialChartPlugin.Models
             var result = visible.Zip(tool, (first, second) => new { Visible = first, Material = second })
                             .Where(x => x.Visible).Select(x => x.Material);
 
-            return result.Count() == 0 ? 0 : (result.Min() == 3000 ? 0 : result.Min());
+            return result.Count() == 0 ? 0 : result.Min();
         }
 
         public TimeMaterialsPair() { }
