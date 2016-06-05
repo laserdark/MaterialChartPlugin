@@ -213,7 +213,7 @@
                 </chartingToolkit:Chart.Axes>
                 <chartingToolkit:AreaSeries DependentValuePath="Y" IndependentValuePath="X" ItemsSource="{Binding RepairToolSeries}" Title="高速修復材" Style="{DynamicResource SimpleAreaSeriesStyle}" BorderBrush="#FFA2C08B"/>
                 <chartingToolkit:AreaSeries DependentValuePath="Y" IndependentValuePath="X" ItemsSource="{Binding ImprovementToolSeries}" Title="改修資材" Style="{DynamicResource SimpleAreaSeriesStyle}" BorderBrush="#FF666666"/>
-                <chartingToolkit:AreaSeries DependentValuePath="Y" IndependentValuePath="X" ItemsSource="{Binding InstantBuildToolSeries}" Title="改修資材" Style="{DynamicResource SimpleAreaSeriesStyle}" BorderBrush="#FFFADBDA"/>
+                <chartingToolkit:AreaSeries DependentValuePath="Y" IndependentValuePath="X" ItemsSource="{Binding InstantBuildToolSeries}" Title="改修資材" Style="{DynamicResource SimpleAreaSeriesStyle}" BorderBrush="#FFFAC900"/>
                 <chartingToolkit:AreaSeries DependentValuePath="Y" IndependentValuePath="X" ItemsSource="{Binding DevelopmentToolSeries}" Title="改修資材" Style="{DynamicResource SimpleAreaSeriesStyle}" BorderBrush="#FF4B888B"/>
             </chartingToolkit:Chart>
             <Border BorderBrush="{DynamicResource BorderBrushKey}" BorderThickness="0,0,0,1" Margin="0,20,0,10" />

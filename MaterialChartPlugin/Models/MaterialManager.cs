@@ -27,6 +27,12 @@ namespace MaterialChartPlugin.Models
 
         public int RepairTool => KanColleClient.Current.Homeport.Materials.InstantRepairMaterials;
 
+        public int DevelopmentMaterials => KanColleClient.Current.Homeport.Materials.DevelopmentMaterials;
+
+        public int InstantBuildMaterials => KanColleClient.Current.Homeport.Materials.InstantBuildMaterials;
+
+        public int ImprovementMaterials => KanColleClient.Current.Homeport.Materials.ImprovementMaterials;
+
         /// <summary>
         /// 備蓄可能な資材量の上限を表します。
         /// </summary>
@@ -72,6 +78,9 @@ namespace MaterialChartPlugin.Models
                         { nameof(materials.Steel),  (_,__) => RaisePropertyChanged(nameof(Steel)) },
                         { nameof(materials.Bauxite),  (_,__) => RaisePropertyChanged(nameof(Bauxite)) },
                         { nameof(materials.InstantRepairMaterials),  (_,__) => RaisePropertyChanged(nameof(RepairTool)) },
+                        { nameof(materials.DevelopmentMaterials),  (_,__) => RaisePropertyChanged(nameof(DevelopmentMaterials)) },
+                        { nameof(materials.InstantBuildMaterials),  (_,__) => RaisePropertyChanged(nameof(InstantBuildMaterials)) },
+                        { nameof(materials.ImprovementMaterials),  (_,__) => RaisePropertyChanged(nameof(ImprovementMaterials)) },
                         { nameof(adomiral.Level), (_, __) => RaisePropertyChanged(nameof(StorableMaterialLimit)) }
                     };
 
@@ -90,7 +99,7 @@ namespace MaterialChartPlugin.Models
                             if (Log.HasLoaded)
                             {
                                 Log.History.Add(new TimeMaterialsPair(DateTime.Now, Fuel, Ammunition, Steel, Bauxite, RepairTool,
-                                    materials.DevelopmentMaterials, materials.InstantBuildMaterials, materials.ImprovementMaterials));
+                                    DevelopmentMaterials, InstantBuildMaterials, ImprovementMaterials));
                                 await Log.SaveAsync();
                             }
                         });
@@ -110,7 +119,10 @@ namespace MaterialChartPlugin.Models
             var materials = KanColleClient.Current.Homeport.Materials;
             return propertyName == nameof(materials.Fuel) || propertyName == nameof(materials.Ammunition)
                 || propertyName == nameof(materials.Steel) || propertyName == nameof(materials.Bauxite)
-                || propertyName == nameof(materials.InstantRepairMaterials);
+                || propertyName == nameof(materials.InstantRepairMaterials)
+                || propertyName == nameof(materials.DevelopmentMaterials)
+                || propertyName == nameof(materials.ImprovementMaterials)
+                || propertyName == nameof(materials.InstantBuildMaterials);
         }
 
         public async Task Initialize()

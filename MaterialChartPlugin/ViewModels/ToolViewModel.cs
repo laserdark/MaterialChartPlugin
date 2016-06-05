@@ -33,13 +33,13 @@ namespace MaterialChartPlugin.ViewModels
         public int Bauxite => materialManager.Bauxite;
 
         public int RepairTool => materialManager.RepairTool;
-        /*
+
         public int DevelopmentMaterials => materialManager.DevelopmentMaterials;
 
         public int ImprovementMaterials => materialManager.ImprovementMaterials;
 
         public int InstantBuildMaterials => materialManager.InstantBuildMaterials;
-        */
+
 
         #region FuelSeries変更通知プロパティ
         private ObservableCollection<ChartPoint> _FuelSeries = new ObservableCollection<ChartPoint>();
@@ -480,11 +480,9 @@ namespace MaterialChartPlugin.ViewModels
                         { nameof(materialManager.Steel),  (_,__) => RaisePropertyChanged(nameof(Steel)) },
                         { nameof(materialManager.Bauxite),  (_,__) => RaisePropertyChanged(nameof(Bauxite)) },
                         { nameof(materialManager.RepairTool),  (_,__) => RaisePropertyChanged(nameof(RepairTool)) },
-                        /*
                         { nameof(materialManager.ImprovementMaterials),  (_,__) => RaisePropertyChanged(nameof(ImprovementMaterials)) },
                         { nameof(materialManager.DevelopmentMaterials),  (_,__) => RaisePropertyChanged(nameof(DevelopmentMaterials)) },
                         { nameof(materialManager.InstantBuildMaterials),  (_,__) => RaisePropertyChanged(nameof(InstantBuildMaterials)) },
-                        */
                         {
                             // materialManagerの初期化が完了したら、DisplayedPeriodの変更時に更新を行うよう設定
                             nameof(materialManager.IsAvailable),
