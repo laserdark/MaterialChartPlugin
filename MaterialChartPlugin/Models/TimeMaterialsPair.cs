@@ -56,7 +56,7 @@ namespace MaterialChartPlugin.Models
         public int InstantBuildTool { get; private set; }
 
         /// <summary>
-        /// 回収資材
+        /// 改修資材
         /// </summary>
         [ProtoMember(9)]
         public int ImprovementTool { get; private set; }

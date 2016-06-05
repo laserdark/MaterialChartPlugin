@@ -10,7 +10,7 @@
                           XMin="2015/09/10 3:00:00" 
                           XMax="2015/09/11 3:00:00"
                           YMax1="8000"
-                          YMax2="200">
+                          YMax2="500">
 	<ViewModels:ToolViewModel.AmmunitionSeries>
         <Models:ChartPoint X="2015/09/10 3:00:00" Y="5964"/>
         <Models:ChartPoint X="2015/09/10 4:00:00" Y="6177"/>
@@ -152,6 +152,87 @@
         <Models:ChartPoint X="2015/09/11 2:00:00" Y="170"/>
         <Models:ChartPoint X="2015/09/11 3:00:00" Y="163"/>
     </ViewModels:ToolViewModel.RepairToolSeries>
+    <ViewModels:ToolViewModel.ImprovementToolSeries>
+        <Models:ChartPoint X="2015/09/10 3:00:00" Y="100"/>
+        <Models:ChartPoint X="2015/09/10 4:00:00" Y="100"/>
+        <Models:ChartPoint X="2015/09/10 5:00:00" Y="100"/>
+        <Models:ChartPoint X="2015/09/10 6:00:00" Y="100"/>
+        <Models:ChartPoint X="2015/09/10 7:00:00" Y="100"/>
+        <Models:ChartPoint X="2015/09/10 8:00:00" Y="100"/>
+        <Models:ChartPoint X="2015/09/10 9:00:00" Y="100"/>
+        <Models:ChartPoint X="2015/09/10 10:00:00" Y="100"/>
+        <Models:ChartPoint X="2015/09/10 11:00:00" Y="100"/>
+        <Models:ChartPoint X="2015/09/10 12:00:00" Y="100"/>
+        <Models:ChartPoint X="2015/09/10 13:00:00" Y="100"/>
+        <Models:ChartPoint X="2015/09/10 14:00:00" Y="100"/>
+        <Models:ChartPoint X="2015/09/10 15:00:00" Y="100"/>
+        <Models:ChartPoint X="2015/09/10 16:00:00" Y="100"/>
+        <Models:ChartPoint X="2015/09/10 17:00:00" Y="100"/>
+        <Models:ChartPoint X="2015/09/10 18:00:00" Y="100"/>
+        <Models:ChartPoint X="2015/09/10 19:00:00" Y="100"/>
+        <Models:ChartPoint X="2015/09/10 20:00:00" Y="100"/>
+        <Models:ChartPoint X="2015/09/10 21:00:00" Y="100"/>
+        <Models:ChartPoint X="2015/09/10 22:00:00" Y="100"/>
+        <Models:ChartPoint X="2015/09/10 23:00:00" Y="100"/>
+        <Models:ChartPoint X="2015/09/11 0:00:00" Y="100"/>
+        <Models:ChartPoint X="2015/09/11 1:00:00" Y="100"/>
+        <Models:ChartPoint X="2015/09/11 2:00:00" Y="100"/>
+        <Models:ChartPoint X="2015/09/11 3:00:00" Y="100"/>
+    </ViewModels:ToolViewModel.ImprovementToolSeries>
+    <ViewModels:ToolViewModel.DevelopmentToolSeries>
+        <Models:ChartPoint X="2015/09/10 3:00:00" Y="150"/>
+        <Models:ChartPoint X="2015/09/10 4:00:00" Y="150"/>
+        <Models:ChartPoint X="2015/09/10 5:00:00" Y="150"/>
+        <Models:ChartPoint X="2015/09/10 6:00:00" Y="150"/>
+        <Models:ChartPoint X="2015/09/10 7:00:00" Y="150"/>
+        <Models:ChartPoint X="2015/09/10 8:00:00" Y="150"/>
+        <Models:ChartPoint X="2015/09/10 9:00:00" Y="150"/>
+        <Models:ChartPoint X="2015/09/10 10:00:00" Y="160"/>
+        <Models:ChartPoint X="2015/09/10 11:00:00" Y="170"/>
+        <Models:ChartPoint X="2015/09/10 12:00:00" Y="180"/>
+        <Models:ChartPoint X="2015/09/10 13:00:00" Y="200"/>
+        <Models:ChartPoint X="2015/09/10 14:00:00" Y="200"/>
+        <Models:ChartPoint X="2015/09/10 15:00:00" Y="200"/>
+        <Models:ChartPoint X="2015/09/10 16:00:00" Y="200"/>
+        <Models:ChartPoint X="2015/09/10 17:00:00" Y="200"/>
+        <Models:ChartPoint X="2015/09/10 18:00:00" Y="200"/>
+        <Models:ChartPoint X="2015/09/10 19:00:00" Y="200"/>
+        <Models:ChartPoint X="2015/09/10 20:00:00" Y="200"/>
+        <Models:ChartPoint X="2015/09/10 21:00:00" Y="200"/>
+        <Models:ChartPoint X="2015/09/10 22:00:00" Y="200"/>
+        <Models:ChartPoint X="2015/09/10 23:00:00" Y="200"/>
+        <Models:ChartPoint X="2015/09/11 0:00:00" Y="200"/>
+        <Models:ChartPoint X="2015/09/11 1:00:00" Y="200"/>
+        <Models:ChartPoint X="2015/09/11 2:00:00" Y="200"/>
+        <Models:ChartPoint X="2015/09/11 3:00:00" Y="200"/>
+    </ViewModels:ToolViewModel.DevelopmentToolSeries>
+    <ViewModels:ToolViewModel.InstantBuildToolSeries>
+        <Models:ChartPoint X="2015/09/10 3:00:00" Y="300"/>
+        <Models:ChartPoint X="2015/09/10 4:00:00" Y="300"/>
+        <Models:ChartPoint X="2015/09/10 5:00:00" Y="300"/>
+        <Models:ChartPoint X="2015/09/10 6:00:00" Y="300"/>
+        <Models:ChartPoint X="2015/09/10 7:00:00" Y="300"/>
+        <Models:ChartPoint X="2015/09/10 8:00:00" Y="300"/>
+        <Models:ChartPoint X="2015/09/10 9:00:00" Y="300"/>
+        <Models:ChartPoint X="2015/09/10 10:00:00" Y="300"/>
+        <Models:ChartPoint X="2015/09/10 11:00:00" Y="300"/>
+        <Models:ChartPoint X="2015/09/10 12:00:00" Y="300"/>
+        <Models:ChartPoint X="2015/09/10 13:00:00" Y="300"/>
+        <Models:ChartPoint X="2015/09/10 14:00:00" Y="300"/>
+        <Models:ChartPoint X="2015/09/10 15:00:00" Y="300"/>
+        <Models:ChartPoint X="2015/09/10 16:00:00" Y="300"/>
+        <Models:ChartPoint X="2015/09/10 17:00:00" Y="300"/>
+        <Models:ChartPoint X="2015/09/10 18:00:00" Y="300"/>
+        <Models:ChartPoint X="2015/09/10 19:00:00" Y="300"/>
+        <Models:ChartPoint X="2015/09/10 20:00:00" Y="300"/>
+        <Models:ChartPoint X="2015/09/10 21:00:00" Y="300"/>
+        <Models:ChartPoint X="2015/09/10 22:00:00" Y="300"/>
+        <Models:ChartPoint X="2015/09/10 23:00:00" Y="300"/>
+        <Models:ChartPoint X="2015/09/11 0:00:00" Y="300"/>
+        <Models:ChartPoint X="2015/09/11 1:00:00" Y="300"/>
+        <Models:ChartPoint X="2015/09/11 2:00:00" Y="300"/>
+        <Models:ChartPoint X="2015/09/11 3:00:00" Y="300"/>
+    </ViewModels:ToolViewModel.InstantBuildToolSeries>
     <ViewModels:ToolViewModel.StorableLimitSeries>
         <Models:ChartPoint X="2015/09/10 3:00:00" Y="5000"/>
         <Models:ChartPoint X="2015/09/11 3:00:00" Y="5000"/>

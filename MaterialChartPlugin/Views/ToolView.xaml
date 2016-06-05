@@ -212,6 +212,9 @@
                     <chartingToolkit:LinearAxis Orientation="Y" Minimum="{Binding YMin2}" Maximum="{Binding YMax2}" MajorTickMarkStyle="{DynamicResource MajorTickStyle}" Location="Left" GridLineStyle="{DynamicResource GridLineStyle}" ShowGridLines="True" MinWidth="40"/>
                 </chartingToolkit:Chart.Axes>
                 <chartingToolkit:AreaSeries DependentValuePath="Y" IndependentValuePath="X" ItemsSource="{Binding RepairToolSeries}" Title="高速修復材" Style="{DynamicResource SimpleAreaSeriesStyle}" BorderBrush="#FFA2C08B"/>
+                <chartingToolkit:AreaSeries DependentValuePath="Y" IndependentValuePath="X" ItemsSource="{Binding ImprovementToolSeries}" Title="改修資材" Style="{DynamicResource SimpleAreaSeriesStyle}" BorderBrush="#FF666666"/>
+                <chartingToolkit:AreaSeries DependentValuePath="Y" IndependentValuePath="X" ItemsSource="{Binding InstantBuildToolSeries}" Title="改修資材" Style="{DynamicResource SimpleAreaSeriesStyle}" BorderBrush="#FFFADBDA"/>
+                <chartingToolkit:AreaSeries DependentValuePath="Y" IndependentValuePath="X" ItemsSource="{Binding DevelopmentToolSeries}" Title="改修資材" Style="{DynamicResource SimpleAreaSeriesStyle}" BorderBrush="#FF4B888B"/>
             </chartingToolkit:Chart>
             <Border BorderBrush="{DynamicResource BorderBrushKey}" BorderThickness="0,0,0,1" Margin="0,20,0,10" />
             <WrapPanel Margin="10,0,10,10">
