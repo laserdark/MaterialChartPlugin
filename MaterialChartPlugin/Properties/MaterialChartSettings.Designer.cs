@@ -106,5 +106,53 @@ namespace MaterialChartPlugin.Properties {
                 this["IsBauxiteChartEnable"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool IsRepairToolChartEnable {
+            get {
+                return ((bool)(this["IsRepairToolChartEnable"]));
+            }
+            set {
+                this["IsRepairToolChartEnable"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool IsImprovementToolChartEnable {
+            get {
+                return ((bool)(this["IsImprovementToolChartEnable"]));
+            }
+            set {
+                this["IsImprovementToolChartEnable"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool IsDevelopmentToolChartEnable {
+            get {
+                return ((bool)(this["IsDevelopmentToolChartEnable"]));
+            }
+            set {
+                this["IsDevelopmentToolChartEnable"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool IsInstantBuildToolChartEnable {
+            get {
+                return ((bool)(this["IsInstantBuildToolChartEnable"]));
+            }
+            set {
+                this["IsInstantBuildToolChartEnable"] = value;
+            }
+        }
     }
 }

@@ -63,32 +63,46 @@ namespace MaterialChartPlugin.Models
 
         public int MostMaterial(Boolean[] visible)
         {
-            var array = new[]
-            {
-                new {Visible = visible[0], Material = Fuel},
-                new {Visible = visible[1], Material = Ammunition},
-                new {Visible = visible[2], Material = Steel},
-                new {Visible = visible[3], Material = Bauxite},
-            };
+            var material = new [] { Fuel, Ammunition, Steel, Bauxite };
+            var result = visible
+                .Zip(material, (first, second) => new { Visible = first, Material = second })
+                .Where(x => x.Visible)
+                .Select(x => x.Material);
 
-            var result = array.Where(x => x.Visible).Select(x => x.Material);
+            return result.Count() == 0 ? material.Max() : result.Max();
 
-            return result.Count() == 0 ? array.Select(x => x.Material).Max() : result.Max();
         }
 
         public int MinMaterial(Boolean[] visible)
         {
-            var array = new[]
-            {
-                new {Visible = visible[0], Material = Fuel},
-                new {Visible = visible[1], Material = Ammunition},
-                new {Visible = visible[2], Material = Steel},
-                new {Visible = visible[3], Material = Bauxite},
-            };
+            var material = new[] { Fuel, Ammunition, Steel, Bauxite };
 
-            var result = array.Where(x => x.Visible).Select(x => x.Material);
+            var result = visible.Zip(material, (first, second) => new { Visible = first, Material = second })
+                            .Where(x => x.Visible).Select(x => x.Material);
 
-            return result.Count() == 0 ? 0 : result.Min();
+            return result.Count() == 0 ? 0 : (result.Min() == 300000 ? 0 : result.Min());
+        }
+
+        public int MostTool(Boolean[] visible)
+        {
+            var tool = new[] { RepairTool, ImprovementTool, DevelopmentTool, InstantBuildTool };
+            var result = visible
+                .Zip(tool, (first, second) => new { Visible = first, Material = second })
+                .Where(x => x.Visible)
+                .Select(x => x.Material);
+
+            return result.Count() == 0 ? tool.Max() : result.Max();
+
+        }
+
+        public int MinTool(Boolean[] visible)
+        {
+            var tool = new[] { RepairTool, ImprovementTool, DevelopmentTool, InstantBuildTool };
+
+            var result = visible.Zip(tool, (first, second) => new { Visible = first, Material = second })
+                            .Where(x => x.Visible).Select(x => x.Material);
+
+            return result.Count() == 0 ? 0 : (result.Min() == 3000 ? 0 : result.Min());
         }
 
         public TimeMaterialsPair() { }
@@ -104,6 +118,7 @@ namespace MaterialChartPlugin.Models
             this.RepairTool = repairTool;
 
             // いつか使うかも？
+            // いつ使うの？今で(ry
             this.DevelopmentTool = developmentTool;
             this.InstantBuildTool = instantBuildTool;
             this.ImprovementTool = improvementTool;

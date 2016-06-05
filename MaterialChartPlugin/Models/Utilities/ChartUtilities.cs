@@ -27,7 +27,7 @@ namespace MaterialChartPlugin.Models.Utilities
             // を参考に作成
 
             if (max <= min)
-                throw new ArgumentException();
+                throw new ArgumentException("Max:" + max + "Min:" + min);
 
             int difference = max - min; // 最上位桁値
             int shift = 1;              // 桁上げ倍率

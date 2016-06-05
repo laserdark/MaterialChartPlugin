@@ -388,36 +388,93 @@ namespace MaterialChartPlugin.ViewModels
         }
         #endregion
 
-        public Visibility IsFuelChartVisible
+        #region IsRepairToolChartEnable 変更通知プロパティ
+        private Boolean _IsRepairToolChartEnable = MaterialChartSettings.Default.IsRepairToolChartEnable;
+        public Boolean IsRepairToolChartEnable
         {
             get
             {
-                return IsFuelChartEnable.IsVisible();
+                return _IsRepairToolChartEnable;
+            }
+            set
+            {
+                _IsRepairToolChartEnable = value;
+                MaterialChartSettings.Default.IsRepairToolChartEnable = value;
+                RaisePropertyChanged();
+                RaisePropertyChanged(nameof(this.IsRepairToolChartVisible));
             }
         }
+        #endregion
 
-        public Visibility IsAmmunitionChartVisible
+        #region IsImprovementToolChartEnable 変更通知プロパティ
+        private Boolean _IsImprovementToolChartEnable = MaterialChartSettings.Default.IsImprovementToolChartEnable;
+        public Boolean IsImprovementToolChartEnable
         {
             get
             {
-                return IsAmmunitionChartEnable.IsVisible();
+                return _IsImprovementToolChartEnable;
             }
-        }
-        public Visibility IsSteelChartVisible
-        {
-            get
+            set
             {
-                return IsSteelChartEnable.IsVisible();
+                _IsImprovementToolChartEnable = value;
+                MaterialChartSettings.Default.IsImprovementToolChartEnable = value;
+                RaisePropertyChanged();
+                RaisePropertyChanged(nameof(this.IsImprovementToolChartVisible));
             }
         }
+        #endregion
 
-        public Visibility IsBauxiteChartVisible
+        #region IsDevelopmentToolChartEnable 変更通知プロパティ
+        private Boolean _IsDevelopmentToolChartEnable = MaterialChartSettings.Default.IsDevelopmentToolChartEnable;
+        public Boolean IsDevelopmentToolChartEnable
         {
             get
             {
-                return IsBauxiteChartEnable.IsVisible();
+                return _IsDevelopmentToolChartEnable;
+            }
+            set
+            {
+                _IsDevelopmentToolChartEnable = value;
+                MaterialChartSettings.Default.IsDevelopmentToolChartEnable = value;
+                RaisePropertyChanged();
+                RaisePropertyChanged(nameof(this.IsDevelopmentToolChartVisible));
             }
         }
+        #endregion
+
+        #region IsInstantBuildToolChartEnable 変更通知プロパティ
+        private Boolean _IsInstantBuildToolChartEnable = MaterialChartSettings.Default.IsInstantBuildToolChartEnable;
+        public Boolean IsInstantBuildToolChartEnable
+        {
+            get
+            {
+                return _IsInstantBuildToolChartEnable;
+            }
+            set
+            {
+                _IsInstantBuildToolChartEnable = value;
+                MaterialChartSettings.Default.IsInstantBuildToolChartEnable = value;
+                RaisePropertyChanged();
+                RaisePropertyChanged(nameof(this.IsInstantBuildToolChartVisible));
+            }
+        }
+        #endregion
+
+        public Visibility IsFuelChartVisible => IsFuelChartEnable.IsVisible();
+
+        public Visibility IsAmmunitionChartVisible => IsAmmunitionChartEnable.IsVisible();
+
+        public Visibility IsSteelChartVisible => IsSteelChartEnable.IsVisible();
+ 
+        public Visibility IsBauxiteChartVisible => IsBauxiteChartEnable.IsVisible();
+
+        public Visibility IsRepairToolChartVisible => IsRepairToolChartEnable.IsVisible();
+
+        public Visibility IsImprovementToolChartVisible => IsImprovementToolChartEnable.IsVisible();
+
+        public Visibility IsDevelopmentToolChartVisible => IsDevelopmentToolChartEnable.IsVisible();
+
+        public Visibility IsInstantBuildToolChartVisible => IsInstantBuildToolChartEnable.IsVisible();
 
         public DisplayedPeriod DisplayedPeriod => ChartSettings.DisplayedPeriod.Value;
 
@@ -532,6 +589,34 @@ namespace MaterialChartPlugin.ViewModels
                         if (materialManager.Log.HasLoaded)
                                 RefleshData();
                     }
+                },
+                {
+                    nameof(this.IsRepairToolChartEnable), (_, __) =>
+                    {
+                        if (materialManager.Log.HasLoaded)
+                                RefleshData();
+                    }
+                },
+                {
+                    nameof(this.IsImprovementToolChartEnable), (_, __) =>
+                    {
+                        if (materialManager.Log.HasLoaded)
+                                RefleshData();
+                    }
+                },
+                {
+                    nameof(this.IsDevelopmentToolChartEnable), (_, __) =>
+                    {
+                        if (materialManager.Log.HasLoaded)
+                                RefleshData();
+                    }
+                },
+                {
+                    nameof(this.IsInstantBuildToolChartEnable), (_, __) =>
+                    {
+                        if (materialManager.Log.HasLoaded)
+                                RefleshData();
+                    }
                 }
             };
 
@@ -549,13 +634,16 @@ namespace MaterialChartPlugin.ViewModels
         /// <param name="newData"></param>
         public void UpdateData(TimeMaterialsPair newData)
         {
-            var chartvisibleList = new[] { IsFuelChartEnable, IsAmmunitionChartEnable, IsSteelChartEnable, IsBauxiteChartEnable };
+            var materialChartVisibleList = new[] { IsFuelChartEnable, IsAmmunitionChartEnable, IsSteelChartEnable, IsBauxiteChartEnable };
+            var toolChartVisibleList = new[] { IsRepairToolChartEnable, IsImprovementToolChartEnable, IsDevelopmentToolChartEnable, IsInstantBuildToolChartEnable };
 
             SetXAxis(newData);
-            SetMaterialYAxis(Math.Max(this.mostMaterial, newData.MostMaterial(chartvisibleList)), Math.Min(this.minMaterial, newData.MinMaterial(chartvisibleList)));
+            SetMaterialYAxis(
+                Math.Max(this.mostMaterial, newData.MostMaterial(materialChartVisibleList)),
+                Math.Min(this.minMaterial, newData.MinMaterial(materialChartVisibleList)));
             SetToolYAxis(
-                Math.Max(this.mostTool, Max(newData.RepairTool, newData.DevelopmentTool, newData.ImprovementTool, newData.InstantBuildTool)),
-                Math.Min(this.minTool, Min(newData.RepairTool, newData.DevelopmentTool, newData.ImprovementTool, newData.InstantBuildTool)));
+                Math.Max(this.mostTool, newData.MostTool(toolChartVisibleList)),
+                Math.Min(this.minTool, newData.MinTool(toolChartVisibleList)));
             AddChartData(newData);
         }
 
@@ -575,11 +663,16 @@ namespace MaterialChartPlugin.ViewModels
                 .ThinOut(ChartSettings.DisplayedPeriod)
                 .ToArray();
 
-            var chartvisibleList = new[] { IsFuelChartEnable, IsAmmunitionChartEnable, IsSteelChartEnable, IsBauxiteChartEnable };
+            var materialChartVisibleList = new[] { IsFuelChartEnable, IsAmmunitionChartEnable, IsSteelChartEnable, IsBauxiteChartEnable };
+            var toolChartVisibleList = new[] { IsRepairToolChartEnable, IsImprovementToolChartEnable, IsDevelopmentToolChartEnable, IsInstantBuildToolChartEnable };
 
             SetXAxis(neededData[neededData.Length - 1]);
-            SetMaterialYAxis(neededData.Max(p => p.MostMaterial(chartvisibleList)), neededData.Min(p => p.MinMaterial(chartvisibleList)));
-            SetToolYAxis(neededData.Max(p => Max(p.RepairTool, p.DevelopmentTool, p.ImprovementTool, p.InstantBuildTool)), neededData.Min(p => Min(p.RepairTool, p.DevelopmentTool, p.ImprovementTool, p.InstantBuildTool)));
+            SetMaterialYAxis(
+                neededData.Max(p => p.MostMaterial(materialChartVisibleList)),
+                neededData.Min(p => p.MinMaterial(materialChartVisibleList)));
+            SetToolYAxis(
+                neededData.Max(p => p.MostTool(toolChartVisibleList)),
+                neededData.Min(p => p.MinTool(toolChartVisibleList)));
             RefleshChartData(neededData);
         }
 
@@ -674,8 +767,8 @@ namespace MaterialChartPlugin.ViewModels
             var interval = ChartUtilities.GetInterval(this.minMaterial, this.mostMaterial);
             var chartvisibleList = new[] { IsFuelChartEnable, IsAmmunitionChartEnable, IsSteelChartEnable, IsBauxiteChartEnable };
 
-            YMax1 = chartvisibleList.Where(x => x).Count() == 0 ? mostMaterial : ChartUtilities.GetYAxisMax(this.mostMaterial, interval);
-            YMin1 = chartvisibleList.Where(x => x).Count() == 0 ? 0 : (IsYMinFixedAtZero ? 0 : ChartUtilities.GetYAxisMin(this.minMaterial, interval));
+            YMax1 = chartvisibleList.Any(x => x) ? ChartUtilities.GetYAxisMax(this.mostMaterial, interval) : mostMaterial;
+            YMin1 = chartvisibleList.Any(x => x) ? (IsYMinFixedAtZero ? 0 : ChartUtilities.GetYAxisMin(this.minMaterial, interval)) : 0;
         }
 
         /// <summary>
@@ -687,8 +780,10 @@ namespace MaterialChartPlugin.ViewModels
             this.mostTool = Math.Max(mostTool, 10);
             this.minTool = minTool;
             var interval = ChartUtilities.GetInterval(this.minTool, this.mostTool);
-            YMax2 = ChartUtilities.GetYAxisMax(this.mostTool, interval);
-            YMin2 = IsYMinFixedAtZero ? 0 : ChartUtilities.GetYAxisMin(this.minTool, interval);
+            var chartvisibleList = new[] { IsRepairToolChartEnable, IsImprovementToolChartEnable, IsDevelopmentToolChartEnable, IsInstantBuildToolChartEnable };
+
+            YMax2 = chartvisibleList.Any(x => x) ? ChartUtilities.GetYAxisMax(this.mostTool, interval) : mostTool;
+            YMin2 = chartvisibleList.Any(x => x) ? (IsYMinFixedAtZero ? 0 : ChartUtilities.GetYAxisMin(this.minTool, interval)) : 0;
         }
 
         public async void ExportAsCsv()
@@ -719,9 +814,5 @@ namespace MaterialChartPlugin.ViewModels
         {
             await materialManager.Log.ExportAsync();
         }
-
-        private int Max(params int[] values) => values.Max();
-
-        private int Min(params int[] values) => values.Min();
     }
 }

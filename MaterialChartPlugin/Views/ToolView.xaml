@@ -206,17 +206,23 @@
                 <chartingToolkit:AreaSeries Visibility="{Binding IsBauxiteChartVisible}" DependentValuePath="Y" IndependentValuePath="X" ItemsSource="{Binding BauxiteSeries}" Title="ボーキサイト" Style="{DynamicResource SimpleAreaSeriesStyle}" BorderBrush="#FFC7844D"/>
                 <chartingToolkit:LineSeries DependentValuePath="Y" IndependentValuePath="X" ItemsSource="{Binding StorableLimitSeries}" Title="回復上限" Style="{DynamicResource SimpleLineSeriesStyle}" BorderBrush="#FF4E3876"/>
             </chartingToolkit:Chart>
-            <chartingToolkit:Chart Height="200" Style="{DynamicResource MaterialChartStyle}" Margin="0,25,0,0" >
+            <StackPanel Margin="0,10,0,0" Orientation="Horizontal" VerticalAlignment="Center">
+                <CheckBox Margin="0,3,10,3" IsChecked="{Binding IsRepairToolChartEnable}" Content="高速修復材"/>
+                <CheckBox Margin="0,3,10,3" IsChecked="{Binding IsImprovementToolChartEnable}" Content="改修資材"/>
+                <CheckBox Margin="0,3,10,3" IsChecked="{Binding IsDevelopmentToolChartEnable}" Content="開発資材"/>
+                <CheckBox Margin="0,3,10,3" IsChecked="{Binding IsInstantBuildToolChartEnable}" Content="高速建造材"/>
+            </StackPanel>
+            <chartingToolkit:Chart Height="200" Style="{DynamicResource MaterialChartStyle}" Margin="0,10,0,0" >
                 <chartingToolkit:Chart.Axes>
                     <chartingToolkit:DateTimeAxis Orientation="X" Minimum="{Binding XMin}" Maximum="{Binding XMax}" MajorTickMarkStyle="{DynamicResource MajorTickStyle}" Location="Bottom" AxisLabelStyle="{StaticResource DateTimeAxisLabelStyle}" GridLineStyle="{DynamicResource GridLineStyle}" ShowGridLines="True"/>
                     <chartingToolkit:LinearAxis Orientation="Y" Minimum="{Binding YMin2}" Maximum="{Binding YMax2}" MajorTickMarkStyle="{DynamicResource MajorTickStyle}" Location="Left" GridLineStyle="{DynamicResource GridLineStyle}" ShowGridLines="True" MinWidth="40"/>
                 </chartingToolkit:Chart.Axes>
-                <chartingToolkit:AreaSeries DependentValuePath="Y" IndependentValuePath="X" ItemsSource="{Binding RepairToolSeries}" Title="高速修復材" Style="{DynamicResource SimpleAreaSeriesStyle}" BorderBrush="#FFA2C08B"/>
-                <chartingToolkit:AreaSeries DependentValuePath="Y" IndependentValuePath="X" ItemsSource="{Binding ImprovementToolSeries}" Title="改修資材" Style="{DynamicResource SimpleAreaSeriesStyle}" BorderBrush="#FF666666"/>
-                <chartingToolkit:AreaSeries DependentValuePath="Y" IndependentValuePath="X" ItemsSource="{Binding InstantBuildToolSeries}" Title="改修資材" Style="{DynamicResource SimpleAreaSeriesStyle}" BorderBrush="#FFFAC900"/>
-                <chartingToolkit:AreaSeries DependentValuePath="Y" IndependentValuePath="X" ItemsSource="{Binding DevelopmentToolSeries}" Title="改修資材" Style="{DynamicResource SimpleAreaSeriesStyle}" BorderBrush="#FF4B888B"/>
+                <chartingToolkit:AreaSeries Visibility="{Binding IsRepairToolChartVisible}" DependentValuePath="Y" IndependentValuePath="X" ItemsSource="{Binding RepairToolSeries}" Title="高速修復材" Style="{DynamicResource SimpleAreaSeriesStyle}" BorderBrush="#FFA2C08B"/>
+                <chartingToolkit:AreaSeries Visibility="{Binding IsImprovementToolChartVisible}" DependentValuePath="Y" IndependentValuePath="X" ItemsSource="{Binding ImprovementToolSeries}" Title="改修資材" Style="{DynamicResource SimpleAreaSeriesStyle}" BorderBrush="#FF666666"/>
+                <chartingToolkit:AreaSeries Visibility="{Binding IsDevelopmentToolChartVisible}" DependentValuePath="Y" IndependentValuePath="X" ItemsSource="{Binding DevelopmentToolSeries}" Title="開発資材" Style="{DynamicResource SimpleAreaSeriesStyle}" BorderBrush="#FF4B888B"/>
+                <chartingToolkit:AreaSeries Visibility="{Binding IsInstantBuildToolChartVisible}" DependentValuePath="Y" IndependentValuePath="X" ItemsSource="{Binding InstantBuildToolSeries}" Title="高速建造材" Style="{DynamicResource SimpleAreaSeriesStyle}" BorderBrush="#FFFAC900"/>
             </chartingToolkit:Chart>
-            <Border BorderBrush="{DynamicResource BorderBrushKey}" BorderThickness="0,0,0,1" Margin="0,20,0,10" />
+            <Border BorderBrush="{DynamicResource BorderBrushKey}" BorderThickness="0,0,0,1" Margin="0,10,0,10" />
             <WrapPanel Margin="10,0,10,10">
                 <controls:CallMethodButton Content="バックアップデータのインポート" MethodName="ImportMaterialData" Width="180" HorizontalAlignment="Left" VerticalAlignment="Center" Height="35" Margin="0,5,20,5"/>
                 <controls:CallMethodButton Content="バックアップデータのエクスポート" MethodName="ExportMaterialData" Width="180" HorizontalAlignment="Left" VerticalAlignment="Center" Height="35" Margin="0,5,20,5"/>
