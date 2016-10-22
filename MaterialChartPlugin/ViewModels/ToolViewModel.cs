@@ -506,6 +506,7 @@ namespace MaterialChartPlugin.ViewModels
                 DisplayViewModel.Create(DisplayedPeriod.OneWeek, "1週間"),
                 DisplayViewModel.Create(DisplayedPeriod.OneMonth, "1ヶ月"),
                 DisplayViewModel.Create(DisplayedPeriod.ThreeMonths, "3ヶ月"),
+                DisplayViewModel.Create(DisplayedPeriod.HalfYear, "半年"),
                 DisplayViewModel.Create(DisplayedPeriod.OneYear, "1年"),
                 DisplayViewModel.Create(DisplayedPeriod.ThreeYears, "3年")
             };

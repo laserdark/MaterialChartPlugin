@@ -32,6 +32,11 @@ namespace MaterialChartPlugin.Models
         ThreeMonths,
 
         /// <summary>
+        /// 半年分のデータを表示します。
+        /// </summary>
+        HalfYear,
+
+        /// <summary>
         /// 1年分のデータを表示します。
         /// </summary>
         OneYear,

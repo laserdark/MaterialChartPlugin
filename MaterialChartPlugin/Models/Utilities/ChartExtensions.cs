@@ -57,6 +57,8 @@ namespace MaterialChartPlugin.Models.Utilities
                     return TimeSpan.FromHours(4);
                 case DisplayedPeriod.ThreeMonths:
                     return TimeSpan.FromHours(12);
+                case DisplayedPeriod.HalfYear:
+                    return TimeSpan.FromDays(1);
                 case DisplayedPeriod.OneYear:
                     return TimeSpan.FromDays(2);
                 case DisplayedPeriod.ThreeYears:
@@ -77,6 +79,8 @@ namespace MaterialChartPlugin.Models.Utilities
                     return 0.05;
                 case DisplayedPeriod.ThreeMonths:
                     return 0.08;
+                case DisplayedPeriod.HalfYear:
+                    return 0.10;
                 case DisplayedPeriod.OneYear:
                     return 0.12;
                 case DisplayedPeriod.ThreeYears:
@@ -137,6 +141,8 @@ namespace MaterialChartPlugin.Models.Utilities
                     return TimeSpan.FromDays(30);
                 case DisplayedPeriod.ThreeMonths:
                     return TimeSpan.FromDays(90);
+                case DisplayedPeriod.HalfYear:
+                    return TimeSpan.FromDays(180);
                 case DisplayedPeriod.OneYear:
                     return TimeSpan.FromDays(365);
                 case DisplayedPeriod.ThreeYears:
