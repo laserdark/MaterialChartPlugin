@@ -37,16 +37,16 @@
       <HintPath>..\packages\KanColleViewer.Composition.1.4.0\lib\net45\KanColleViewer.Composition.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="KanColleViewer.Controls, Version=1.3.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\KanColleViewer.Controls.1.3.1\lib\net46\KanColleViewer.Controls.dll</HintPath>
+    <Reference Include="KanColleViewer.Controls, Version=1.3.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\KanColleViewer.Controls.1.3.2\lib\net46\KanColleViewer.Controls.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="KanColleViewer.PluginAnalyzer, Version=1.1.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\KanColleViewer.PluginAnalyzer.1.1.1.0\lib\net46\KanColleViewer.PluginAnalyzer.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="KanColleWrapper, Version=1.5.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\KanColleWrapper.1.5.0\lib\net46\KanColleWrapper.dll</HintPath>
+    <Reference Include="KanColleWrapper, Version=1.6.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\KanColleWrapper.1.6.1\lib\net46\KanColleWrapper.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Livet, Version=1.3.0.0, Culture=neutral, PublicKeyToken=b0b1d3f711ef38cb, processorArchitecture=MSIL">
@@ -57,16 +57,16 @@
       <HintPath>..\packages\log4net.2.0.5\lib\net45-full\log4net.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="MetroRadiance, Version=2.2.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MetroRadiance.2.2.0\lib\net46\MetroRadiance.dll</HintPath>
+    <Reference Include="MetroRadiance, Version=2.3.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MetroRadiance.2.3.0\lib\net46\MetroRadiance.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="MetroRadiance.Chrome, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MetroRadiance.Chrome.2.1.0\lib\net46\MetroRadiance.Chrome.dll</HintPath>
+    <Reference Include="MetroRadiance.Chrome, Version=2.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MetroRadiance.Chrome.2.2.0\lib\net46\MetroRadiance.Chrome.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="MetroRadiance.Core, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MetroRadiance.Core.2.1.0\lib\net46\MetroRadiance.Core.dll</HintPath>
+    <Reference Include="MetroRadiance.Core, Version=2.2.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MetroRadiance.Core.2.2.1\lib\net46\MetroRadiance.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="MetroTrilithon, Version=0.2.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -85,12 +85,12 @@
       <HintPath>..\packages\Nekoxy.1.5.2.20\lib\net45\Nekoxy.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="protobuf-net, Version=2.0.0.668, Culture=neutral, PublicKeyToken=257b51d87d2e4d67, processorArchitecture=MSIL">
-      <HintPath>..\packages\protobuf-net.2.0.0.668\lib\net40\protobuf-net.dll</HintPath>
+    <Reference Include="protobuf-net, Version=2.1.0.0, Culture=neutral, PublicKeyToken=257b51d87d2e4d67, processorArchitecture=MSIL">
+      <HintPath>..\packages\protobuf-net.2.1.0\lib\net451\protobuf-net.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="StatefulModel, Version=0.5.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\StatefulModel.0.5.0\lib\portable-net45+win+wp80+MonoAndroid10+xamarinios10+MonoTouch10\StatefulModel.dll</HintPath>
+      <HintPath>..\packages\StatefulModel.0.6.0\lib\portable-net45+win+wp80+MonoAndroid10+xamarinios10+MonoTouch10\StatefulModel.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
